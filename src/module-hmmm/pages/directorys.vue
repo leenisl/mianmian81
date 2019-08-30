@@ -44,7 +44,7 @@
     </el-form-item>
     <!-- 表格 -->
     <el-form-item>
-      <el-table border :data="tableData" style="width:1112px">
+      <el-table border :data="tableData" style="width:1112px" >
         <el-table-column prop="id" label="序号" width="70"></el-table-column>
         <el-table-column prop="directoryName" label="目录名称" width="160"></el-table-column>
         <el-table-column prop="creatorID" label="创建者" width="160"></el-table-column>
@@ -52,10 +52,10 @@
         <el-table-column prop="totals" label="面试题数量" width="160"></el-table-column>
         <el-table-column prop="state" label="状态" width="160"></el-table-column>
         <el-table-column label="操作" width="200">
-          <template>
+          <template slot-scope="scope">
             <el-button type="text" size="small">修改</el-button>
             <el-button type="text" size="small">禁用</el-button>
-            <el-button type="text" size="small">删除</el-button>
+            <el-button type="text" size="small" @click="delDir(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { list, removeState, add } from '@/api/hmmm/directorys'
+import { list, remove, add } from '@/api/hmmm/directorys'
 
 export default {
   name: 'DirectorysList',
@@ -84,6 +84,7 @@ export default {
     
       dialogVisible: false,
       tableData: [],
+      // 搜索目录名称
       dirname: '',
       options: [
         {value: '0', label: '禁用'},
@@ -93,14 +94,37 @@ export default {
     }
   },
   methods: {
+    // 删除列表的某条数据
+    delDir (info) {
+    //  console.log(id)
+     this.$confirm('想好再点别后悔', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+     }).then(async () => {
+       await remove(info)
+       this.getData() // 获取列表数据
+     }).catch(() => {
+       this.$message({
+         type: 'info',
+         message: '已取消删除'
+       })
+     })
+     
+  },
+    // 获取列表数据封装函数
+   async getData() {
+      var subject = await list()
+      this.tableData = subject.data.items
+
+    },
     // 添加目录
    async addDir() {
-     console.log('hha')
-    //  this.addDir
       await add(this.formData)
+      this.formData.directoryName = ''
       this.dialogVisible = false
-      await this.list()
-      // console.log(addname)
+      this.getData() // 获取列表数据
+      
   },
     // 返回学科
     getback() {
@@ -109,19 +133,15 @@ export default {
     //  弹框
       handleClose (done) {
         this.$confirm('确认关闭？')
-          .then(_ => {
-            done()
-          })
-          .catch(_ => {})
+        .then(_ => {
+         done()
+        })
+        .catch(_ => {})
       }
     
   },
-  async created() {
-    var subject = await list()
-    // console.log(subject)
-    this.tableData = subject.data.items
-    // console.log(subject.data.items)
-
+  created() {
+    this.getData() // 获取列表数据
   }
 }
 </script>
