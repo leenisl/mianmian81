@@ -295,14 +295,15 @@ export default {
     },
     famtchkState(row, column, cellValue, index) {
     
-      let e = this.chkType.find(item => {
+      let e = this.chkType.find((item, index) => {
+        // console.log(item, index, cellValue)
         if (item.value === Number.parseInt(cellValue)) {
+          console.log('徐', item.label, cellValue)
           return true
+
         }
       })
-     
       return e.label
-      
     }
    
   },

@@ -8,8 +8,7 @@
  */
 
 // 状态
-export const status = [
-  {
+export const status = [{
     value: 1,
     label: '启用'
   },
@@ -20,8 +19,7 @@ export const status = [
 ]
 
 // 难度
-export const difficulty = [
-  {
+export const difficulty = [{
     value: 1,
     label: '简单'
   },
@@ -36,8 +34,7 @@ export const difficulty = [
 ]
 
 // 题型
-export const questionType = [
-  {
+export const questionType = [{
     value: 1,
     label: '单选'
   },
@@ -64,24 +61,22 @@ export const direction = [
 ]
 
 // 精品审核
-export const chkType = [
-  {
-    value: 1,
+export const chkType = [{
+    value: 0,
     label: '待审核'
   },
   {
-    value: 2,
+    value: 1,
     label: '通过'
   },
   {
-    value: 3,
+    value: 2,
     label: '拒绝'
   }
 ]
 
 // 发布状态
-export const publishType = [
-  {
+export const publishType = [{
     value: 1,
     label: '待发布'
   },
