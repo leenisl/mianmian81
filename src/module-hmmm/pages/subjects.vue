@@ -44,7 +44,7 @@
         <el-table :data="subjeictList" style="width: 100%">
           <el-table-column prop="id" label="序号"></el-table-column>
           <el-table-column prop="subjectName" label="学科名称"></el-table-column>
-          <el-table-column prop="creator" label="创建者"></el-table-column>
+          <el-table-column prop="username" label="创建者"></el-table-column>
           <el-table-column prop="addDate" label="创建日期" width="200">
             <span slot-scope="obj">{{obj.row.addDate | parseTimeByString}}</span>
           </el-table-column>
@@ -127,7 +127,7 @@ export default {
         await add(data)
         // 这下面是修改
       } else {
-        if (this.addSubject === null) {
+        if (this.addSubject === '') {
           return this.$message('学科名称不能为空')
         }
         await update(data)
