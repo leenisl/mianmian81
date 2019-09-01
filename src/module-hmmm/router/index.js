@@ -32,19 +32,15 @@ export default [
     children: [
       {
         path: 'list',
-        component: _import('hmmm/pages/questionview'),
+        component: _import('hmmm/pages/questions'),
         name: 'questions-list',
-        meta: { title: '基础题库', noCache: true },
-        children: [
-          {
-            path: '',
-            component: _import('hmmm/pages/questions')
-          },
-          {
-            path: 'revisionQuestion/:id',
-            component: _import('hmmm/pages/questions-new')
-          }
-        ]
+        meta: { title: '基础题库', noCache: true }    
+      },
+      {
+        path: 'revisionQuestion/:id',
+        hidden: true,
+        component: _import('hmmm/pages/questions-new'),
+        meta: { title: '修改题库', noCache: true }   
       },
       {
         path: 'choice',

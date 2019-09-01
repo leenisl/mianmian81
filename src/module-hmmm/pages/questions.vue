@@ -142,7 +142,7 @@
                 <el-button slot="reference" style="margin-right:10px">预览</el-button>
               </el-popover> -->
               <el-button slot="reference" @click="preview(obj.row.id)">预览</el-button>
-              <el-button slot="reference" @click="gorevision(obj.row.id)">修改</el-button>
+              <el-button slot="reference" @click="$router.push(`/questions/revisionQuestion/${obj.row.id}`)">修改</el-button>
               <el-button slot="reference" @click="del(obj.row.id)">删除</el-button>
               <el-button slot="reference" @click="sift(obj.row.id)">加入精选</el-button>
               <!-- <a href="javascript:;" >修改</a>
@@ -164,10 +164,10 @@
           ></el-pagination>
         </el-row>
         <el-dialog title="题目预览" :visible.sync="dialogVisible" width="50%">
-          <question-dialog :id="sendId"  />
-          <!-- <span slot="footer" class="dialog-footer">
+          <question-dialog :info="previewInfo" :subjectlist='subjectlist'  />
+          <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">关闭</el-button>
-          </span> -->
+          </span>
         </el-dialog>
       </el-card>
     </div>
@@ -175,20 +175,20 @@
 </template>
 
 <script>
+import { detail, list } from '@/api/hmmm/questions'
 import { createAPI } from '@/utils/request'
 import { simple } from '@/api/hmmm/subjects'
 import { simple as tagsimple } from '@/api/hmmm/tags'
 import { difficulty, questionType, direction } from '@/api/hmmm/constants'
 import { provinces, citys } from '@/api/hmmm/citys'
-import { list } from '@/api/hmmm/questions'
 import { constants } from 'fs'
 import { simple as ScreatorID } from '@/api/base/users'
-import { async } from 'q'
 import questionDialog from '@/module-hmmm/components/questions-preview.vue'
 export default {
   name: 'QuestionsList',
   data() {
     return {
+      previewInfo: {},
       sendId: '',
       dialogVisible: false,
       formData: {
@@ -220,7 +220,8 @@ export default {
       capitallist: [],
       cityslist: [],
       creatorlist: [],
-      quslist: []
+      quslist: [],
+      info: []
     }
   },
   watch: {
@@ -238,22 +239,26 @@ export default {
     // }
   },
   methods: {
+    async getInfo() {
+      let a = await detail({ id: this.sendId, isNext: false })
+      this.previewInfo = a.data
+      // console.log(this.previewInfo)
+    },
     preview(id) {
       this.dialogVisible = true
       this.sendId = id
+      this.getInfo()
+
     },
     async sift(id) {
       await this.$confirm('您确定将该试题加入精选题库?', '提示')
       await createAPI(`/questions/choice/${id}/0`, 'post')
-      console.log(1)
+      // console.log(1)
     },
     async del(id) {
       await this.$confirm('您确定要删除该条数据?', '提示')
       await createAPI(`/questions/${id}`, 'delete')
       this.getlist({...this.page, ...this.formsearch})
-    },
-    gorevision(id) {
-      this.$router.push(`/questions/list/revisionQuestion/:${id}`)
     },
     goto() {
       this.$router.push('/questions/new')
