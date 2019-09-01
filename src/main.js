@@ -23,6 +23,9 @@ import base from '@/module-manage/' // 用户管理
 // import details from '@/module-details/' // 表单页
 import hmmm from '@/module-hmmm/' // 黑马面面
 
+import { quillEditor } from 'vue-quill-editor'
+Vue.component('quill-editor', quillEditor)
+
 Vue.use(dashboard, store)
 Vue.use(base, store)
 // Vue.use(list, store)
