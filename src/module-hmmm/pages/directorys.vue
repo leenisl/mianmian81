@@ -101,7 +101,7 @@ export default {
       // 分页
       page: { page: 1, pagesize: 10, total: 0 },
       formData: {
-        subjectID: 1, // 新建目录的ID
+        subjectID: Number(this.$route.params.id), // 新建目录的ID
         directoryName: '', // 新建目录的名
         id: ''
       },

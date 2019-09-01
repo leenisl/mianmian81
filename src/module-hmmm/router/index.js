@@ -78,10 +78,10 @@ export default [
         name: 'subjects-directorys',
         meta: { title: '目录', noCache: true },
         children: [
-          // {
-          //   path: '',
-          //   component: _import('hmmm/pages/directorys')
-          // },
+          {
+            path: '',
+            component: _import('hmmm/pages/directorys')
+          },
           {
             path: '/subjects/directorys/:id',
             component: _import('hmmm/pages/directorys')
