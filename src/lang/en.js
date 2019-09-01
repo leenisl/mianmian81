@@ -1,5 +1,8 @@
 export default {
+
   route: {
+    interviewskill: 'Interviewskill',
+    addinterviewskill: 'Addinterviewskill',
     dashboard: 'Dashboard',
     manage: 'manage',
     users: 'users',

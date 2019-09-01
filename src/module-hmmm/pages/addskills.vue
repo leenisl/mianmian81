@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { add } from '@/api/hmmm/articles'
+import { add, detail } from '@/api/hmmm/articles' // 增加  文章详情
 import 'quill/dist/quill.core.css' // 使用quill富文本
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
@@ -44,20 +44,10 @@ export default {
       },
       rules: {
         title: [
-          { required: true, message: '标题不能为空', trigger: 'blur' },
-          {
-            min: 2,
-            max: 10,
-            message: '输入标题在2-10直接'
-          }
+          { required: true, message: '标题不能为空', trigger: 'blur' }
         ],
         articleBody: [
-          { required: true, message: '输入内容不能为空', trigger: 'blur' },
-          {
-            min: 2,
-            max: 30,
-            message: '文章内容在2-50之间'
-          }
+          { required: true, message: '输入内容不能为空', trigger: 'blur' }
         ],
         videoURL: [
           { required: true, message: '输入视频地址不能为空', trigger: 'blur' }
@@ -76,7 +66,13 @@ export default {
       })
     }
   },
-  async created() {}
+  async created() {
+    let { id } = this.$route.params
+    let articleDetail = await detail({ id: id })
+    this.formData.title = articleDetail.data.title
+    this.formData.articleBody = articleDetail.data.articleBody
+    this.formData.videoURL = articleDetail.data.videoURL
+  }
 }
 </script>
 

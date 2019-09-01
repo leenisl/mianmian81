@@ -1,5 +1,7 @@
 export default {
   route: {
+    interviewskill: '面试技巧',
+    addinterviewskill: '新增面试技巧',
     dashboard: '首页',
     manage: '后台管理',
     users: '用户管理',
