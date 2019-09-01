@@ -7,7 +7,7 @@
         <el-table-column prop="userName" label="用户名" align="center"></el-table-column>
         <el-table-column label="试题ID" align="center">
           <template slot-scope="scope">
-            <span @click="detailItem()">{{scope.row.questionIDs|subStr}}</span>
+            <span slot="reference" @click="preview(scope.row.id)">{{scope.row.questionIDs|subStr}}</span>
           </template>
         </el-table-column>
         <el-table-column prop="progressOfAnswer" label="答题进度" align="center"></el-table-column>
@@ -31,15 +31,21 @@
         ></el-pagination>
       </el-row>
     </div>
+      <el-dialog title="题目预览" :visible.sync="dialogVisible" width="50%">
+          <!-- <question-dialog :id="sendId"  /> -->
+      </el-dialog>
   </div>
 </template>
 
 <script>
 import { randoms, removeRandoms } from '@/api/hmmm/questions'
+import QuestionsPreview from '@/module-hmmm/components/questions-preview.vue'
 export default {
   name: 'QuestionsRandoms',
   data() {
     return {
+      // sendId: '',
+     dialogVisible: false,
       tableData: [],
       page: {
         currentPage: 1,
@@ -48,6 +54,11 @@ export default {
     }
   },
   methods: {
+    // 点击弹出具体题目
+    preview(id) {
+      this.dialogVisible = true
+    //  this.sendId = id
+    },
     // 点击删除列表数据
     delRandoms(info) {
       this.$confirm('此操作将会删除该条数据' + ',是否继续?', '提示', {type: 'warning'}).then(
@@ -87,6 +98,9 @@ export default {
        return item.slice(-4).toString()
         }).join(',')       
     }   
+  },
+  components: {
+    QuestionsPreview
   },
   created() {
     this.getrandoms()
