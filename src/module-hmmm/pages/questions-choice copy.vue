@@ -274,22 +274,22 @@ export default {
     searchCodes() {
       let params = this.searchForm
       this.getChoice(params)
-      console.log(params)
+      // console.log(params)
     },
 
     currentChange(newPage) {
-      console.log(newPage)
+      // console.log(newPage)
       this.pager.page = newPage
       this.getChoice(...this.pager)
     },
     async getChoice(parmas) {
       parmas = parmas || ''
       let data = await choice({ ...parmas })
-      console.log(parmas)
+      // console.log(parmas)
       this.tableData = data.data.items
       this.pages = data.data.pages
-      console.log(data)
-      console.log(this.pages)
+      // console.log(data)
+      // console.log(this.pages)
     },
 
     selectCitys() {

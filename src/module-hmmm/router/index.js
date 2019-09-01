@@ -82,6 +82,7 @@ export default [
         path: 'directorys',
         component: _import('hmmm/pages/Classify'),
         name: 'subjects-directorys',
+        hidden: true,
         meta: { title: '目录', noCache: true },
         children: [
           {
@@ -102,6 +103,7 @@ export default [
         path: 'tags',
         component: _import('hmmm/pages/tags'),
         name: 'subjects-tags',
+        hidden: true,
         meta: { title: '标签', noCache: true }
       }
     ]
@@ -126,6 +128,7 @@ export default [
         path: 'list/addskills/:id', // 修改数据
         component: _import('hmmm/pages/addskills'),
         name: 'update-skills',
+        
         meta: { title: '新增面试技巧', noCache: true },
         hidden: true
       },
@@ -133,6 +136,7 @@ export default [
         path: 'list/addskills', // 新增技巧
         component: _import('hmmm/pages/addskills'),
         name: 'add-skills',
+        hidden: true,
         meta: { title: '新增面试技巧', noCache: true }
       }
     ]

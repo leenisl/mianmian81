@@ -33,7 +33,6 @@
     <el-row type="flex" justify="end" style="margin-top: 15px;">
     <div class="block">
       <el-pagination
-      @size-change="handleSizeChange"
       @current-change="qiehu"
       :current-page="pages.page"
       :page-sizes="[10, 20, 30, 40]"

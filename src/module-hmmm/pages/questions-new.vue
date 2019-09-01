@@ -92,7 +92,7 @@
                 <!-- <div class="uploadBox">
                   <i class="el-icon-plus"></i>
                 </div> -->
-                <el-upload class="uploadBox" >
+                <el-upload class="uploadBox" action=""  >
           <el-button size="small" type="primary">点击上传</el-button>
         </el-upload>
                 <i class="delIcon el-icon-error" @click="delItem(index)"></i>
@@ -113,7 +113,7 @@
               <el-row type="flex" justify="flex-start" align="middle">
                 <span class="optionCode">{{item.code}}</span>
                 <el-input class="optionTitle" v-model="item.title" placeholder="请输入内容"></el-input>
-               <el-upload class="uploadBox" >
+               <el-upload class="uploadBox" action="" >
           <el-button size="small" type="primary">点击上传</el-button>
         </el-upload>
                 <i class="delIcon el-icon-error" @click="delItem(index)"></i>
