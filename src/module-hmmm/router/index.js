@@ -74,9 +74,23 @@ export default [
       },
       {
         path: 'directorys',
-        component: _import('hmmm/pages/directorys'),
+        component: _import('hmmm/pages/Classify'),
         name: 'subjects-directorys',
-        meta: { title: '目录', noCache: true }
+        meta: { title: '目录', noCache: true },
+        children: [
+          {
+            path: '',
+            component: _import('hmmm/pages/directorys')
+          },
+          {
+            path: '/subjects/directorys/:id',
+            component: _import('hmmm/pages/directorys')
+          },
+          {
+            path: '/subjects/tags/:id',
+            component: _import('hmmm/pages/tags')
+          }
+        ]
       },
       {
         path: 'tags',
