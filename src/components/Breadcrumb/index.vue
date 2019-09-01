@@ -60,4 +60,8 @@ export default {
     cursor: text;
   }
 }
+
+.el-breadcrumb__inner a, .el-breadcrumb__inner.is-link{
+  color: #fff;
+}
 </style>

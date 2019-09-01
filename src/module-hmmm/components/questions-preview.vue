@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div class="dashboard-container">
     <div class="app-container info-card" style="padding-bottom: 40px">
@@ -225,3 +226,5 @@ export default {
   padding: 15px;
 }
 </style>
+=======
+>>>>>>> 902b2c4b4c93ab4c4dc4a5b63cc17451bdf07b39

@@ -80,9 +80,23 @@ export default [
       },
       {
         path: 'directorys',
-        component: _import('hmmm/pages/directorys'),
+        component: _import('hmmm/pages/Classify'),
         name: 'subjects-directorys',
-        meta: { title: '目录', noCache: true }
+        meta: { title: '目录', noCache: true },
+        children: [
+          {
+            path: '',
+            component: _import('hmmm/pages/directorys')
+          },
+          {
+            path: '/subjects/directorys/:id',
+            component: _import('hmmm/pages/directorys')
+          },
+          {
+            path: '/subjects/tags/:id',
+            component: _import('hmmm/pages/tags')
+          }
+        ]
       },
       {
         path: 'tags',
@@ -107,6 +121,19 @@ export default [
         component: _import('hmmm/pages/articles'),
         name: 'articles-list',
         meta: { title: '面试技巧文章', noCache: true }
+      },
+      {
+        path: 'list/addskills/:id', // 修改数据
+        component: _import('hmmm/pages/addskills'),
+        name: 'update-skills',
+        meta: { title: '新增面试技巧', noCache: true },
+        hidden: true
+      },
+       {
+        path: 'list/addskills', // 新增技巧
+        component: _import('hmmm/pages/addskills'),
+        name: 'add-skills',
+        meta: { title: '新增面试技巧', noCache: true }
       }
     ]
   }
